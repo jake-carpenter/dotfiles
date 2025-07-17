@@ -1,0 +1,1 @@
+../_src/run_once-p2-fisher-plugins.fish

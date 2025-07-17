@@ -1,0 +1,83 @@
+#!/usr/bin/env fish
+
+# Hash the packages file to trigger a change here when there's a change there.
+# packages.yaml hash: {{ include ".chezmoidata/packages.yaml" | sha256sum }}
+
+# Initialize arrays
+set taps
+set brews
+set casks
+set profile
+
+# Base profile
+{{ range .packages.darwin.base.taps }}
+  set -a taps {{ . | quote }}
+{{ end }}
+{{ range .packages.darwin.base.brews }}
+  set -a brews {{ . | quote }}
+{{ end }}
+{{ range .packages.darwin.base.casks }}
+  set -a casks {{ . | quote }}
+{{ end }}
+
+# Desktop profile
+{{ if has .chezmoi.fqdnHostname .systems.desktop }}
+  set -a profile desktop
+
+  {{ range .packages.darwin.desktop.taps }}
+    set -a taps {{ . | quote }}
+  {{ end -}}
+  {{ range .packages.darwin.desktop.brews }}
+    set -a brews {{ . | quote }}
+  {{ end }}
+  {{ range .packages.darwin.desktop.casks }}
+    set -a casks {{ . | quote }}
+  {{ end }}
+{{ end }}
+
+# Personal profile
+{{ if has .chezmoi.fqdnHostname .systems.personal }}
+  set -a profile personal
+
+  {{ range .packages.darwin.personal.taps }}
+    set -a taps {{ . | quote }}
+  {{ end -}}
+  {{ range .packages.darwin.personal.brews }}
+    set -a brews {{ . | quote }}
+  {{ end }}
+  {{ range .packages.darwin.personal.casks }}
+    set -a casks {{ . | quote }}
+  {{ end }}
+{{ end }}
+
+# Join profile array with commas for display
+set profile_str "base"
+if test (count $profile) -gt 0
+  set profile_str "base, "(string join ", " $profile)
+end
+
+echo
+echo -e "This system is in the following profiles: "(set_color green)$profile_str(set_color normal)
+echo "🚀 Tapping brew formulae and installing packages"
+echo -e ""(set_color brgrey)"[debug]: Ran from run_once_before-p1-brew-packages.fish"(set_color normal)
+echo "─────────────────────────────────────────"
+# Formulae
+for tap in $taps
+  if not brew tap 2>/dev/null | grep -q "$tap"
+    echo "❌ $tap"
+    brew tap "$tap"
+  else
+    echo "✅ $tap"
+  end
+end
+
+# Packages
+set brewfile_content ""
+for brew_pkg in $brews
+  set brewfile_content "$brewfile_content\nbrew \"$brew_pkg\""
+end
+for cask in $casks
+  set brewfile_content "$brewfile_content\ncask \"$cask\""
+end
+
+echo -e "$brewfile_content" | brew bundle --file=-

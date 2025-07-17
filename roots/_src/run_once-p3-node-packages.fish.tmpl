@@ -1,0 +1,49 @@
+#!/usr/bin/env fish
+
+# Hash the packages file to trigger a change here when there's a change there.
+# packages.yaml hash: {{ include ".chezmoidata/packages.yaml" | sha256sum }}
+
+# Initialize packages array
+set packages
+
+# Base profile
+{{ range .packages.npm.base }}
+  set packages $packages {{ . | quote }}
+{{ end }}
+
+# Desktop profile
+{{ if has .chezmoi.fqdnHostname .systems.desktop }}
+  {{ range .packages.npm.desktop }}
+    set packages $packages {{ . | quote }}
+  {{ end -}}
+{{ end }}
+
+# Personal profile
+{{ if has .chezmoi.fqdnHostname .systems.personal }}
+  {{ range .packages.npm.personal }}
+    set packages $packages {{ . | quote }}
+  {{ end -}}
+{{ end }}
+
+echo
+echo "🚀 Checking for missing NPM packages"
+echo -e ""(set_color brgrey)"[debug]: Ran from run_once-p3-node-packages.fish"(set_color normal)
+echo "─────────────────────────────────────────"
+
+set missing_packages
+
+for package in $packages
+  if not npm list "$package" -g --parseable 2>/dev/null | grep -q "$package"
+    echo "❌ $package"
+    set missing_packages $missing_packages $package
+  else
+    echo "✅ $package"
+  end
+end
+
+if test (count $missing_packages) -gt 0
+  npm -g install $missing_packages
+  echo -e "\n🎉 All missing packages have been installed.\n"
+else
+  echo -e "\n👍 All packages are already installed.\n"
+end
