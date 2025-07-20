@@ -34,7 +34,8 @@ killall Finder
 
 echo -e "⚙️ Adjusting MissionControl settings"
 echo -e "    - Displays have separate Spaces"
-defaults write com.apple.spaces "spans-displays" -bool "true"
+# This one seems backwards, but it should be "0" to enable separate Spaces for each display
+defaults write com.apple.spaces "spans-displays" -bool "false"
 echo -e "    - Group windows by application"
 defaults write com.apple.dock "expose-group-apps" -bool "true"
 killall SystemUIServer
