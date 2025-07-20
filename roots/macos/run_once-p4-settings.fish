@@ -1,0 +1,52 @@
+#! /usr/bin/env fish
+
+echo -e "⚙️ Adjusting dock settings"
+echo "    - Tile size: 48px"
+defaults write com.apple.dock "tilesize" -int "48"
+echo "    - Autohide: false"
+defaults write com.apple.dock "autohide" -bool "false"
+echo "    - Autohide time: 0.5sec"
+defaults write com.apple.dock "autohide-time-modifier" -float "0.5"
+echo "    - Disable recently used apps in the dock"
+defaults write com.apple.dock "show-recents" -bool "false"
+echo "    - Enable scroll to show App Exposé"
+defaults write com.apple.dock "scroll-to-open" -bool "true"
+killall Dock
+
+echo -e "⚙️ Adjusting Finder settings"
+echo "    - Set largest sidebar icon size"
+defaults write NSGlobalDomain "NSTableViewDefaultSizeMode" -int "3"
+echo "    - Show hidden files"
+defaults write com.apple.finder "AppleShowAllFiles" -bool "true"
+echo "    - Show file extensions"
+defaults write NSGlobalDomain "AppleShowAllExtensions" -bool "true"
+echo "    - Use list view style"
+defaults write com.apple.finder "FXPreferredViewStyle" -string "Nlsv"
+echo "    - Sort folders first"
+defaults write com.apple.finder "_FXSortFoldersFirst" -bool "true"
+echo "    - Empty trash after 30 days"
+defaults write com.apple.finder "FXRemoveOldTrashItems" -bool "true"
+echo "    - Show path bar"
+defaults write com.apple.finder "ShowPathbar" -bool "true"
+echo "    - Disable file extension change warning"
+defaults write com.apple.finder "FXEnableExtensionChangeWarning" -bool "true"
+killall Finder
+
+echo -e "⚙️ Adjusting MissionControl settings"
+echo -e "    - Displays have separate Spaces"
+defaults write com.apple.spaces "spans-displays" -bool "true"
+echo -e "    - Group windows by application"
+defaults write com.apple.dock "expose-group-apps" -bool "true"
+killall SystemUIServer
+
+echo -e "⚙️ Adjusting input settings"
+echo -e "    - Enable 3-finger drag"
+defaults write com.apple.AppleMultitouchTrackpad "TrackpadThreeFingerDrag" -bool "true"
+echo -e "    - Disable character accents"
+defaults write NSGlobalDomain "ApplePressAndHoldEnabled" -bool "false"
+echo -e "    - Enable keyboard navigation"
+defaults write NSGlobalDomain AppleKeyboardUIMode -int "2"
+
+echo -e "⚙️ Adjusting iOS simulator settings"
+echo "    - Save screenshots to desktop"
+defaults write com.apple.iphonesimulator "ScreenShotSaveLocation" -string "~/Desktop"
