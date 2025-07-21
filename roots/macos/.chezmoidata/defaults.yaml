@@ -1,0 +1,114 @@
+defaults:
+  - dock:
+      message: "Adjusting dock settings"
+      kill: "Dock"
+      entries:
+        - key: tilesize
+          domain: com.apple.dock
+          type: int
+          expected_value: 48
+          description: "Tile size: 48px"
+        - key: autohide
+          domain: com.apple.dock
+          type: bool
+          expected_value: false
+          description: "Autohide: false"
+        - key: autohide-time-modifier
+          domain: com.apple.dock
+          type: float
+          expected_value: 0.5
+          description: "Autohide time: 0.5sec"
+        - key: show-recents
+          domain: com.apple.dock
+          type: bool
+          expected_value: false
+          description: "Disable recently used apps in the dock"
+        - key: scroll-to-open
+          domain: com.apple.dock
+          type: bool
+          expected_value: true
+          description: "Enable scroll to show App Exposé"
+  - finder:
+      message: "Adjusting Finder settings"
+      kill: "Finder"
+      entries:
+        - key: NSTableViewDefaultSizeMode
+          domain: NSGlobalDomain
+          type: int
+          expected_value: 3
+          description: "Set largest sidebar icon size"
+        - key: AppleShowAllFiles
+          domain: com.apple.finder
+          type: bool
+          expected_value: true
+          description: "Show hidden files"
+        - key: AppleShowAllExtensions
+          domain: NSGlobalDomain
+          type: bool
+          expected_value: true
+          description: "Show file extensions"
+        - key: FXPreferredViewStyle
+          domain: com.apple.finder
+          type: string
+          expected_value: "Nlsv"
+          description: "Use list view style"
+        - key: _FXSortFoldersFirst
+          domain: com.apple.finder
+          type: bool
+          expected_value: true
+          description: "Sort folders first"
+        - key: FXRemoveOldTrashItems
+          domain: com.apple.finder
+          type: bool
+          expected_value: true
+          description: "Empty trash after 30 days"
+        - key: ShowPathbar
+          domain: com.apple.finder
+          type: bool
+          expected_value: true
+          description: "Show path bar"
+        - key: FXEnableExtensionChangeWarning
+          domain: com.apple.finder
+          type: bool
+          expected_value: false
+          description: "Disable file extension change warning"
+  - mission_control:
+      message: "Adjusting MissionControl settings"
+      kill: "SystemUIServer"
+      entries:
+        - key: spans-displays
+          domain: com.apple.spaces
+          type: bool
+          expected_value: false
+          description: "Displays have separate Spaces"
+        - key: expose-group-apps
+          domain: com.apple.dock
+          type: bool
+          expected_value: true
+          description: "Group windows by application"
+  - input:
+      message: "Adjusting input settings"
+      entries:
+        - key: TrackpadThreeFingerDrag
+          domain: com.apple.AppleMultitouchTrackpad
+          type: bool
+          expected_value: true
+          description: "Enable 3-finger drag"
+        - key: ApplePressAndHoldEnabled
+          domain: NSGlobalDomain
+          type: bool
+          expected_value: false
+          description: "Disable character accents"
+        - key: AppleKeyboardUIMode
+          domain: NSGlobalDomain
+          type: int
+          expected_value: 2
+          description: "Enable keyboard navigation"
+  - simulator:
+      message: "Adjusting iOS simulator settings"
+      entries:
+        - key: ScreenShotSaveLocation
+          domain: com.apple.iphonesimulator
+          type: string
+          expected_value: "$HOME/Desktop"
+          description: "Save screenshots to desktop"
