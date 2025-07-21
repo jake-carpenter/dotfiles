@@ -26,8 +26,8 @@ function set_default
     set -g $changed_flag_name true
   end
 end
-
-set yaml_file (chezmoi source-path)/.chezmoidata/defaults.yaml
+echo -e "path: $USER_CHEZMOI_SOURCE_DIR"
+set yaml_file "$USER_CHEZMOI_SOURCE_DIR/.chezmoidata/defaults.yaml"
 
 set num_groups (yq '.defaults | length' $yaml_file)
 
