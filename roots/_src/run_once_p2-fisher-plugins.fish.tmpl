@@ -1,0 +1,11 @@
+#!/usr/bin/env fish
+
+# Hash the plugins file to trigger a change here when there's a change there.
+# fish_plugins hash: {{ include "./dot_config/fish/fish_plugins" | sha256sum }}
+
+echo
+echo "🚀 Updating fisher plugins"
+echo -e ""(set_color brgrey)"[debug]: Ran from run_once_p2-fisher-plugins.sh"(set_color normal)
+echo "─────────────────────────────────────────"
+
+fisher update
