@@ -1,1 +1,0 @@
-../../../../_src/dot_config/fish/functions/dev_clean.fish
