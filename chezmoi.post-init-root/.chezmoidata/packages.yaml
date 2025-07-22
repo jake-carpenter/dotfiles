@@ -41,7 +41,6 @@ packages:
       casks:
         - "1password-cli"
         - "bettermouse"
-        - "bettertouchtool"
         - "cleanshot"
         - "clop"
         - "devcleaner"
@@ -72,6 +71,7 @@ packages:
         - "proxyman"
         - "raycast"
         - "rectangle-pro"
+        - "scroll-reverser"
         - "stats"
         - "ticktick"
         - "visual-studio-code"
