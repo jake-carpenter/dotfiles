@@ -30,6 +30,7 @@ packages:
         - "superfile"
         - "watchman"
         - "yaml-language-server"
+        - "yamllint"
         - "yq"
         - "wget"
       casks:
