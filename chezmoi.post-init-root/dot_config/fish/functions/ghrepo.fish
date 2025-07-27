@@ -20,9 +20,10 @@ function ghrepo --description 'Create a GitHub repository for the current local 
     echo "Choose repository visibility:"
     echo "1) Private"
     echo "2) Public"
+    echo "3) Cancel"
 
     while true
-        read -P "Enter your choice (1 or 2): " choice
+        read -P "Enter your choice (1, 2, or 3): " choice
 
         switch $choice
             case 1
@@ -31,8 +32,11 @@ function ghrepo --description 'Create a GitHub repository for the current local 
             case 2
                 set visibility "public"
                 break
+            case 3
+                echo "Repository creation cancelled by user."
+                return 0
             case '*'
-                echo "Invalid choice. Please enter 1 for private or 2 for public."
+                echo "Invalid choice. Please enter 1 for private, 2 for public, or 3 to cancel."
         end
     end
 
