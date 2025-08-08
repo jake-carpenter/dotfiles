@@ -4,14 +4,25 @@ Managed by [chezmoi](https://chezmoi.io/)
 
 ## Initialize
 
-Run the following command to initialize chezmoi and install pre-requisites:
+Run the following command to initialize chezmoi and install pre-requisites.
+This will also apply a post-init root-source for chezmoi.
 
 ```shell
-sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply jake-carpenter
+sh -c "$(curl -fsLS get.chezmoi.io/lb)" -- init --apply jake-carpenter
 ```
 
-Once finished, apply the source root in `chezmoi.post-init-root` by creating the `.chezmoiroot` file:
+Once completed, follow instructions to apply the source changes and
+re-initialize chezmoi. This will also trigger a second set of scripts
+for required packages to ensure Fish can run with the saved configuration.
 
 ```shell
-echo "chezmoi.post-init-root" > .local/share/chezmoi/.chezmoiroot
+# macOS
+source ~/.zshrc
+
+# Linux
+source ~/.bashrc
+
+chezmoi init --apply
 ```
+
+At this point, you should be able to run Fish.

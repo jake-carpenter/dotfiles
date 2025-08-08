@@ -1,0 +1,7 @@
+{{- if ne .chezmoi.os "darwin" }}
+defaults.darwin.yaml
+.config/zed/
+.warp/
+Library/
+dot_btt_autoload_preset.json
+{{- end }}

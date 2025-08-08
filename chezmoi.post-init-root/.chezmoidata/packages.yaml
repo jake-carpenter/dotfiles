@@ -29,7 +29,6 @@ packages:
         - "rbenv"
         - "superfile"
         - "watchman"
-        - "yaml-language-server"
         - "yamllint"
         - "yq"
         - "wget"
@@ -94,6 +93,26 @@ packages:
         - "arc"
         - "qmk-toolbox"
 
+  ubuntu:
+    base:
+      repos:
+        - "ppa:zhangsongcui3371/fastfetch"
+        - "ppa:maveonair/helix-editor"
+      packages:
+        - "bat"
+        - "btop"
+        - "eza"
+        - "fastfetch"
+        - "git"
+        - "git-delta"
+        - "gh"
+        - "helix"
+        - "hyperfine"
+        - "jq"
+        - "yamllint"
+        - "yq"
+        - "wget"
+
   npm:
     base:
       - "@microsoft/compose-language-service"
@@ -106,5 +125,6 @@ packages:
       - "typescript-language-server"
       - "typescript-svelte-plugin"
       - "vscode-langservers-extracted"
+      - "yaml-language-server"
     desktop:
     personal:
