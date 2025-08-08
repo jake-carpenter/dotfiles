@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
-{{ if eq .chezmoi.os "darwin" }}
+{{ $isUbuntu := and (hasKey .chezmoi.osRelease "id") (eq .chezmoi.osRelease.id "ubuntu") }}
+{{ $isMacOS := eq .chezmoi.os "darwin" }}
+
+{{ if $isMacOS }}
   # Install Homebrew if missing
   if ! command -v brew >/dev/null; then
     echo
@@ -17,7 +20,7 @@ set -e
 
   # Setup Homebrew environment for this shell
   eval "$(/opt/homebrew/bin/brew shellenv)"
-{{ else if eq .chezmoi.osRelease.id "ubuntu" }}
+{{ else if $isUbuntu }}
     echo
     echo "🚀 Installing Ubuntu dependencies"
     echo -e "\033[90m[debug]: Ran from run_once-p1-install.sh\033[0m"
@@ -34,9 +37,9 @@ if ! command -v fish >/dev/null; then
   echo
   echo "🚀 Installing fish"
   echo "─────────────────────────────────────────"
-  {{ if eq .chezmoi.os "darwin" }}
+  {{ if $isMacOS }}
     brew install fish
-  {{ else if eq .chezmoi.osRelease.id "ubuntu" }}
+  {{ else if $isUbuntu }}
     sudo add-apt-repository -y ppa:fish-shell/release-4
     sudo apt update
     sudo apt install -y fish
@@ -50,7 +53,7 @@ if ! command -v pnpm >/dev/null; then
   echo
   echo "🚀 Installing pnpm"
   echo "─────────────────────────────────────────"
-  {{ if not (eq .chezmoi.os "darwin") }}
+  {{ if not $isMacOS }}
     curl -fsSL https://get.pnpm.io/install.sh | sh -
   {{ else }}
     brew install pnpm
@@ -67,7 +70,7 @@ if ! command -v bun >/dev/null; then
   # Add bun to PATH for this session
   export PATH="$HOME/.bun/bin:$PATH"
 
-  {{ if eq .chezmoi.os "darwin" }}
+  {{ if not $isMacOS }}
     # Add bun to .zshrc
     echo "export BUN_INSTALL=\"$HOME\/.bun\"" >> "$HOME/.zshrc"
     echo "export PATH=\"$BUN_INSTALL/bin:\$PATH\"" >> "$HOME/.zshrc"
@@ -93,7 +96,7 @@ if [ ! -f "$HOME/.config/fish/functions/fisher.fish" ]; then
   echo
   echo "🚀 Installing fisher"
   echo "─────────────────────────────────────────"
-  {{ if not (eq .chezmoi.os "darwin") }}
+  {{ if not $isMacOS }}
     fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
   {{ else }}
     brew install fisher
@@ -130,6 +133,6 @@ echo chezmoi.post-init-root > .local/share/chezmoi/.chezmoiroot
 echo "─────────────────────────────────────────"
 echo -e "✅ Step 1 of initialization complete\n"
 echo -e "\033[33mRun the following commands to apply further steps:\033[0m\n"
-echo {{ if not (eq .chezmoi.os "darwin") }}"source ~/.bashrc" {{ else }}"source ~/.zshrc" {{ end }}
+echo {{ if not $isMacOS }}"source ~/.bashrc" {{ else }}"source ~/.zshrc" {{ end }}
 echo "chezmoi init --apply"
 echo

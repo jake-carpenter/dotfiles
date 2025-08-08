@@ -3,7 +3,9 @@
 # Hash the packages file to trigger a change here when there's a change there.
 # packages.yaml hash: {{ include ".chezmoidata/packages.yaml" | sha256sum }}
 
-{{ if ne .chezmoi.osRelease.id "ubuntu" }}
+{{ $isUbuntu := and (hasKey .chezmoi.osRelease "id") (eq .chezmoi.osRelease.id "ubuntu") }}
+
+{{ if not $isUbuntu }}
   exit 0
 {{ end }}
 
