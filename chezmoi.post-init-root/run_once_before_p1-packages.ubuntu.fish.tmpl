@@ -12,8 +12,11 @@ echo "🚀 Applying PPAs/repositories and installing packages for Ubuntu"
 echo "─────────────────────────────────────────"
 
 {{ range .packages.ubuntu.base.repos }}
-  echo "Adding repository: {{ . }}"
-  sudo add-apt-repository -y {{ . | quote }}
+  set repo {{ . }}
+  if not grep -Rq -- "$repo" /etc/apt/sources.list /etc/apt/sources.list.d/
+    echo "Adding repository: $repo"
+    sudo add-apt-repository -y {{ . | quote }}
+  end
 {{ end }}
 
 sudo apt update
