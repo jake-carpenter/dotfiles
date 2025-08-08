@@ -13,9 +13,13 @@ echo "────────────────────────�
 
 {{ range .packages.ubuntu.base.repos }}
   set repo {{ . }}
-  if not grep -Rq -- "$repo" /etc/apt/sources.list /etc/apt/sources.list.d/
+
+  # Check if PPA is already added by trying a dry-run
+  if add-apt-repository --dry-run -y $repo 2>&1 | grep -q "Found existing"
+    echo "Repository already exists: $repo"
+  else
     echo "Adding repository: $repo"
-    sudo add-apt-repository -y {{ . | quote }}
+    sudo add-apt-repository -y $repo
   end
 {{ end }}
 
@@ -29,8 +33,21 @@ set packages
 {{ end }}
 
 if test (count $packages) -gt 0
-  echo "Installing packages: $packages"
-  sudo apt install -y $packages
+  # Check which packages are missing
+  set missing_packages
+
+  for package in $packages
+    if not dpkg -l "$package" 2>/dev/null | grep -q "^ii"
+      set -a missing_packages $package
+    end
+  end
+
+  if test (count $missing_packages) -gt 0
+    echo "Installing missing packages: $missing_packages"
+    sudo apt install -y $missing_packages
+  else
+    echo "All packages are already installed."
+  end
 else
   echo "No packages to install."
 end
