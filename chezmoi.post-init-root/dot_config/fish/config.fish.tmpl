@@ -50,6 +50,8 @@ fish_add_path "$HOME/.cargo/bin"
 
 # dnvm (.NET)
 fish_add_path "$HOME/Library/Application Support/dnvm"
+fish_add_path "$HOME/.dotnet/tools"
+set -gx DOTNET_ROOT "$HOME/Library/Application Support/dnvm/dn"
 
 # abbr (aliases)
 abbr -a vim hx
