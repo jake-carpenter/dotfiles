@@ -128,3 +128,9 @@ packages:
       - "yaml-language-server"
     desktop:
     personal:
+
+  cargo:
+    base:
+      - "projclean"
+    desktop:
+    personal:
