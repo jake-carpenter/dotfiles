@@ -114,6 +114,16 @@ if ! command -v node &> /dev/null; then
   echo "\033[92m✓\033[0m NodeJS installed successfully"
 fi
 
+# Install Rust
+{{ if $isUbuntu }}
+  if ! command -v rustup >/dev/null; then
+    echo
+    echo "🚀 Installing Rust / cargo"
+    sudo apt install rustup rustc -y
+    rustup default stable
+  fi
+{{ end }}
+
 # Install proper chezmoi
 if ! command -v chezmoi >/dev/null; then
   echo

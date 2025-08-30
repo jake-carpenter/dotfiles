@@ -109,6 +109,7 @@ packages:
         - "helix"
         - "hyperfine"
         - "jq"
+        - "rustup"
         - "yamllint"
         - "yq"
         - "wget"
