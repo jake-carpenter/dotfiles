@@ -15,7 +15,7 @@ set -e
     echo
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     echo "eval \"\$(\/opt\/homebrew\/bin\/brew shellenv)\"" >> "$HOME"/.zshrc
-    echo "✅ Homebrew installed successfully"
+    echo "\033[92m✓\033[0m Homebrew installed successfully"
   fi
 
   # Setup Homebrew environment for this shell
@@ -45,7 +45,7 @@ if ! command -v fish >/dev/null; then
     sudo apt install -y fish
   {{ end }}
 
-  echo "✅ Fish shell installed successfully"
+  echo "\033[92m✓\033[0m Fish shell installed successfully"
 fi
 
 # Install pnpm if missing
@@ -58,7 +58,7 @@ if ! command -v pnpm >/dev/null; then
   {{ else }}
     brew install pnpm
   {{ end }}
-  echo "✅ pnpm installed successfully"
+  echo "\033[92m✓\033[0m pnpm installed successfully"
 fi
 
 # Install bun if missing
@@ -75,7 +75,7 @@ if ! command -v bun >/dev/null; then
     echo "export BUN_INSTALL=\"$HOME\/.bun\"" >> "$HOME/.zshrc"
     echo "export PATH=\"$BUN_INSTALL/bin:\$PATH\"" >> "$HOME/.zshrc"
   {{ end }}
-  echo "✅ bun installed successfully"
+  echo "\033[92m✓\033[0m bun installed successfully"
 fi
 
 # Install fnm if missing
@@ -88,7 +88,7 @@ if ! command -v fnm >/dev/null; then
   
   export PATH="$HOME/.local/share/fnm:$PATH"
   eval "$(fnm env)"
-  echo "✅ fnm installed successfully"
+  echo "\033[92m✓\033[0m fnm installed successfully"
 fi
 
 # fisher
@@ -102,7 +102,7 @@ if [ ! -f "$HOME/.config/fish/functions/fisher.fish" ]; then
     brew install fisher
   {{ end }}
 
-  echo "✅ fisher installed successfully"
+  echo "\033[92m✓\033[0m fisher installed successfully"
 fi
 
 # Install LTS NodeJS
@@ -111,7 +111,7 @@ if ! command -v node &> /dev/null; then
   echo "🚀 Installing latest LTS NodeJS"
   echo "─────────────────────────────────────────"
   fnm install --lts
-  echo "✅ NodeJS installed successfully"
+  echo "\033[92m✓\033[0m NodeJS installed successfully"
 fi
 
 # Install proper chezmoi
@@ -125,13 +125,13 @@ if ! command -v chezmoi >/dev/null; then
     brew install chezmoi
   {{ end }}
 
-  echo "✅ chezmoi installed successfully"
+  echo "\033[92m✓\033[0m chezmoi installed successfully"
 fi
 
 echo chezmoi.post-init-root > .local/share/chezmoi/.chezmoiroot
 
 echo "─────────────────────────────────────────"
-echo -e "✅ Step 1 of initialization complete\n"
+echo -e "\033[92m✓\033[0m Step 1 of initialization complete\n"
 echo -e "\033[33mRun the following commands to apply further steps:\033[0m\n"
 echo {{ if not $isMacOS }}"source ~/.bashrc" {{ else }}"source ~/.zshrc" {{ end }}
 echo "chezmoi init --apply"

@@ -2,7 +2,7 @@ function dev_clean
   # Dotnet
   set -a rules 'bin,obj@*.csproj'
 
-  # Expo-releated stuff
+  # Expo-related stuff
   set -a rules 'dist,release,ios,android@package.json'
 
   # Node

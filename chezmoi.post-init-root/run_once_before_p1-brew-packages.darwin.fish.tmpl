@@ -67,10 +67,10 @@ echo "────────────────────────�
 # Formulae
 for tap in $taps
   if not brew tap 2>/dev/null | grep -q "$tap"
-    echo "❌ $tap"
+    echo -e ""(set_color red)"✗"(set_color normal)" $tap"
     brew tap "$tap"
   else
-    echo "✅ $tap"
+    echo -e ""(set_color green)"✓"(set_color normal)" $tap"
   end
 end
 

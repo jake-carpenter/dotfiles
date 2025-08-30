@@ -26,17 +26,17 @@ set packages
 {{ end }}
 
 echo
-echo "🦀 Checking for missing Cargo packages"
+echo "🚀 Checking for missing Cargo packages"
 echo "─────────────────────────────────────────"
 
 set missing_packages
 
 for package in $packages
   if not cargo install --list | grep -q "^$package v"
-    echo "❌ $package"
+    echo -e ""(set_color red)"✗"(set_color normal)" $package"
     set missing_packages $missing_packages $package
   else
-    echo "✅ $package"
+    echo -e ""(set_color green)"✓"(set_color normal)" $package"
   end
 end
 
@@ -44,5 +44,5 @@ if test (count $missing_packages) -gt 0
   cargo install $missing_packages
   echo -e "\n🎉 All missing packages have been installed.\n"
 else
-  echo -e "\n👍 All packages are already installed.\n"
+  echo -e "\nAll packages are already installed.\n"
 end

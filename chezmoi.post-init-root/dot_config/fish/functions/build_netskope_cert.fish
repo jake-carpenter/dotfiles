@@ -11,7 +11,7 @@ function build_netskope_cert
     sudo cp $tmp $target
     rm $tmp
 
-    echo -e (set_color green)"✅"(set_color normal)" Created certificate at "(set_color blue)$target(set_color normal)
+    echo -e (set_color green)"✓"(set_color normal)" Created certificate at "(set_color blue)$target(set_color normal)
 
     echo
     echo (set_color yellow)"Ensure your profile contains these settings:"(set_color normal)
