@@ -1,5 +1,6 @@
 set -gx PATH /usr/local/bin $PATH
 fish_add_path $HOME/.local/bin
+
 # Homebrew
 # https://github.com/orgs/Homebrew/discussions/4412#discussioncomment-8651316
 if test -d /home/linuxbrew/.linuxbrew # Linux
@@ -11,7 +12,9 @@ else if test -d /opt/homebrew # MacOS
     set -gx HOMEBREW_CELLAR "$HOMEBREW_PREFIX/Cellar"
     set -gx HOMEBREW_REPOSITORY "$HOMEBREW_PREFIX/homebrew"
 end
+
 fish_add_path -gP "$HOMEBREW_PREFIX/bin" "$HOMEBREW_PREFIX/sbin"
+
 ! set -q MANPATH; and set MANPATH ''
 set -gx MANPATH "$HOMEBREW_PREFIX/share/man" $MANPATH
 ! set -q INFOPATH; and set INFOPATH ''

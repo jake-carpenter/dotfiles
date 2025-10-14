@@ -40,7 +40,6 @@ packages:
         - "rust"
         - "rust-analyzer"
       casks:
-        - "airserver"
         - "1password-cli"
         - "bettermouse"
         - "cleanshot"
@@ -56,7 +55,6 @@ packages:
         - "easyfind"
         - "elgato-stream-deck"
         - "expo-orbit"
-        - "jetbrains-toolbox"
         - "kaleidoscope"
         - "keka"
         - "keyclu"
