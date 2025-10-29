@@ -1,7 +1,7 @@
 background: '#24273a'
 background_image:
   path: gradient-synth-cat.png
-  opacity: 10
+  opacity: 5
 accent: '#f4dbd6'
 foreground: '#cad3f5'
 details: darker
