@@ -5,6 +5,7 @@ packages:
         - isacikgoz/taps
         - eth-p/software
       brews:
+        - "attempt-cli"
         - "bat"
         - "btop"
         - "ca-certificates"
@@ -27,6 +28,7 @@ packages:
         - "pyenv"
         - "python-lsp-server"
         - "rbenv"
+        - "rip2"
         - "superfile"
         - "watchman"
         - "yamllint"
@@ -130,6 +132,8 @@ packages:
 
   cargo:
     base:
+      - "attempt-cli"
       - "projclean"
+      - "rip2"
     desktop:
     personal:
