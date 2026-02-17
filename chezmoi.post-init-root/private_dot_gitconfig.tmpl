@@ -91,6 +91,10 @@ prompt = false
 [init]
   defaultBranch = main
 
+{{- if not (has .chezmoi.fqdnHostname .systems.personal) }}
+  templatedir = ~/.git-templates
+{{- end }}
+
 [interactive]
   singlekey = true
   diffFilter = delta --tabs 4 --color-only
