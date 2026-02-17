@@ -80,6 +80,7 @@ set -gx NODE_EXTRA_CA_CERTS "/Library/Application Support/Netskope/STAgent/data/
 set -gx REQUESTS_CA_BUNDLE "/Library/Application Support/Netskope/STAgent/data/nscacert_combined.pem"
 set -gx CURL_CA_BUNDLE "/Library/Application Support/Netskope/STAgent/data/nscacert_combined.pem"
 set -gx GIT_SSL_CAPATH "/Library/Application Support/Netskope/STAgent/data/nscacert_combined.pem"
+set -gx SSL_CERT_FILE "/Library/Application Support/Netskope/STAgent/data/nscacert_combined.pem"
 
 # Quiets Kiota output during dotnet build
 export KIOTA_TUTORIAL_ENABLED=0
