@@ -1,9 +1,4 @@
-{{- if eq .chezmoi.config.destDir "/Users/a089947" -}}
-
-[http]
-  sslVerify = false
-
-{{- else -}}
+{{- if has .chezmoi.fqdnHostname .systems.personal }}
 
 [user]
   signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAZrbQ9/KiToUmY5ybBtSIpklB5MNUgYRYOnUgf0o9US
@@ -16,6 +11,11 @@
 
 [commit]
   gpgsign = true
+
+{{- else -}}
+
+[http]
+  sslVerify = false
 
 {{- end }}
 
