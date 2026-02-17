@@ -1,96 +1,58 @@
-{{- if has .chezmoi.fqdnHostname .systems.personal }}
-
-[user]
-  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAZrbQ9/KiToUmY5ybBtSIpklB5MNUgYRYOnUgf0o9US
-
-[gpg]
-  format = ssh
-
-[gpg "ssh"]
-  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+[alias]
+  aliases = "!git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /"
+  amend = commit --amend --edit
+  append = commit --amend --no-edit
+  ci = commit
+  diffs = "!git -c delta.side-by-side=true diff"
+  co = checkout
+  st = status
+  stashall = stash save -u
+  sweep = "!git reset . && git co . && git clean -fd"
+  uncommit = reset --soft "HEAD~1"
+  wip = "!git add -A && git commit -m 'WIP' --no-verify"
 
 [commit]
   gpgsign = true
-
-{{- else -}}
-
-[http]
-  sslVerify = false
-
-{{- end }}
-
-[user]
-  name = Jake Carpenter
-  email = jake@jakecarpenter.dev
-
-[difftool "Kaleidoscope"]
-cmd = "ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\""
-
-[difftool]
-prompt = false
-trustExitCode = true
-
-[diff]
-  colorMoved = default
-  algorithm = histogram
-  tool = Kaleidoscope
-
-[mergetool "Kaleidoscope"]
-cmd = "ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot"
-trustExitCode = true
-
-[mergetool]
-prompt = false
-
-[merge]
-  conflictstyle = zdiff3
-  tool = Kaleidoscope
-
-[help]
-  autocorrect = 15
-
-[pull]
-  rebase = true
-
-[fetch]
-  prune = true
-
-[merge]
-  conflictstyle = zdiff3
-
-[diff]
-  colorMoved = default
-  algorithm = histogram
-
-[delta]
-  navigate = true    # use n and N to move between diff sections
-  light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
-  side-by-side = false
-
-[push]
-  autoSetupRemote = true
-
-[difftool "Kaleidoscope"]
-  cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
-
-[mergetool "Kaleidoscope"]
-  cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-  trustExitCode = true
-
-[difftool]
-  prompt = false
-  trustExitCode = true
-
-[mergetool]
-  prompt = false
 
 [core]
   pager = delta --tabs 4
   autocrlf = input
 
+[delta]
+  navigate = true    # use n and N to move between diff sections
+  light = false
+  side-by-side = false
+
+[diff]
+  colorMoved = default
+  algorithm = histogram
+  tool = Kaleidoscope
+
+[difftool]
+  prompt = false
+  trustExitCode = true
+  
+{{ if has .chezmoi.fqdnHostname .systems.desktop -}}
+[difftool "Kaleidoscope"]
+  cmd = "ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\""
+{{- end }}
+
+[fetch]
+  prune = true
+
+[gpg]
+  format = ssh
+
+{{ if has .chezmoi.fqdnHostname .systems.desktop -}}
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+{{- end }}
+
+[help]
+  autocorrect = 30 # 3.0 seconds
+
 [init]
   defaultBranch = main
-
 {{- if not (has .chezmoi.fqdnHostname .systems.personal) }}
   templatedir = ~/.git-templates
 {{- end }}
@@ -99,80 +61,26 @@ prompt = false
   singlekey = true
   diffFilter = delta --tabs 4 --color-only
 
-[alias]
-  aliases = "!git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /"
-  co = checkout
-  ci = commit
-  amend = commit --amend --edit
-  append = commit --amend --no-edit
-  st = status
-  ap = "!git add -N . && git add -p"
-  cob = checkout -b
-  cop = checkout -p
-  cl = clean -fd
-  stashall = stash save -u
-  uncommit = reset --soft "HEAD~1"
-  unamend = reset --soft "HEAD@{1}"
+[merge]
+  conflictstyle = zdiff3
+  tool = Kaleidoscope
 
-  # get current branch
-  curr = "!git rev-parse --abbrev-ref HEAD"
+[mergetool]
+  prompt = false
 
-  # wip commit
-  wip = "!git add -A && git commit -m 'WIP' --no-verify"
+{{ if has .chezmoi.fqdnHostname .systems.desktop -}}
+[mergetool "Kaleidoscope"]
+  cmd = "ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot"
+  trustExitCode = true
+{{- end }}
 
-  # safer cleanup than reset --hard
-  sweep = "!git reset . && git co . && git clean -fd"
+[pull]
+  rebase = true
 
-  # pretty branch listing
-  br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
+[push]
+  autoSetupRemote = true
 
-  # pretty log summary
-  lg = "log --no-merges --color --graph --date=format:'%m/%d/%Y %H:%M' --pretty=format:'%C(magenta)%d%n%C(yellow)%h %Cgreen%ad%Creset by %C(blue)%an%n%n%w(80,2,2)%B'"
-
-  # short and pretty log summary
-  lgs = "log --no-merges --color --graph --date=format:'%y/%m/%d' --pretty=format:'%C(yellow)%h %C(green)%ad%C(reset)%C(blue)%>(15)%an%C(reset) %<(72,trunc)%s'"
-
-  # delete all local branches except common long-running branches & current
-  boom = "!git branch | grep -v 'master\\|main\\|dev\\|develop\\b' | xargs git branch -D"
-
-  # danger zone
-  ezquash = "!f() { git reset $(git merge-base $0 $(git branch --show-current)); }; f"
-
-  # current commit sha
-  currsha = "!git rev-parse --verify HEAD"
-
-  # Return date of tag. (To use in another alias)
-  tag-date = "!git show $1 | awk '{ if ($1 == \"Date:\") { print substr($0, index($0,$3)) }}' | tail -2 | head -1 #"
-
-  # Show tag message
-  tag-message = "!git show $1 | awk -v capture=0 '{ if(capture) message=message\"\\n\"$0}; BEGIN {message=\"\"}; { if ($1 == \"Date:\" && length(message)==0 ) {capture=1}; if ($1 == \"commit\" ) {capture=0}  }; END { print message }' | sed '$ d' | cat -s #"
-
-  # Get hash of tag commit
-  tag-commit = "!git show $1 | awk '{ if ($1 == \"commit\") { print $2 }}' #"
-
-  # Amend tag message. Can edit current tag-message.
-  taga = "!GIT_TAG_COMMIT=$(git tag-commit $1) && GIT_COMMITTER_DATE=$(git tag-date $1) && git tag -a $1 $GIT_TAG_COMMIT -f #"
-
-  # Delete tag
-  tagd = "!git tag -d $1"
-
-  # Delete a tag that has been pushed
-  tagdp = "!git tagd $1 && git push --delete origin $1 --no-verify"
-
-  # Move tag. Use: git tagm <tagname> <newcommit>
-  tagm = "!GIT_TAG_MESSAGE=$(git tag-message $1) && GIT_COMMITTER_DATE=$(git tag-date $1) && git tag-message $1 && git tag -d $1 && git tag -a $1 $2 -m \"$GIT_TAG_MESSAGE\" #"
-
-  # Move pushed tag. Use: git tagmp <tagname> <newcommit>
-  tagmp = "!git tagm $1 $2 && git push --delete origin $1 --no-verify && git push origin $1 --no-verify #"
-
-  # Amend pushed tag message
-  tagap = "!git taga $1 && git push origin $1 --force --no-verify #"
-
-  # Checkout recent branch side-by-side preview
-  crbx = "!git branch --sort=-committerdate | fzf --header 'Checkout Recent Branch' --preview 'git diff {1} | delta --side-by-side -w 140' --preview-window right,'85%',border-horizontal --pointer='' | xargs git checkout"
-
-  # Checkout recent branch inline preview
-  crb = "!git branch --sort=-committerdate | fzf --header 'Checkout Recent Branch' --preview 'git -c delta.side-by-side=false diff --color=always {1}' --preview-window right,'85%',border-horizontal --pointer='' | xargs git checkout"
-
-  # Diff side-by-side
-  diffs = "!git -c delta.side-by-side=true diff"
+[user]
+  name = Jake Carpenter
+  email = jake@jakecarpenter.dev
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAZrbQ9/KiToUmY5ybBtSIpklB5MNUgYRYOnUgf0o9US
