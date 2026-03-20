@@ -12,7 +12,7 @@ IFS=$'\n\t'
 commit_message_path="$1"
 
 # The second argument, provided by Git, is the kind of commit being made.
-kind="$2"
+kind="${2:-}"
 
 # Set safe defaults.
 branch=""
@@ -27,9 +27,8 @@ trailers="$(git config --get "branch.$branch.description" | git interpret-traile
 
 # Finally, we add trailers to the commit message based on kind of commit being created.
 case "$kind" in
-  message)
+  message | "")
     printf "\n\n%s" "$trailers" >> "$commit_message_path";;
   template)
     sd --max-replacements 1 "\n#" "\n$trailers\n\n#" "$commit_message_path";;
 esac
-
