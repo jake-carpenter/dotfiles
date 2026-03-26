@@ -136,4 +136,5 @@ packages:
       - "projclean"
       - "rip2"
     desktop:
+      - "paneru"
     personal:
