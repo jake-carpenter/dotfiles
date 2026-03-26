@@ -91,7 +91,6 @@ packages:
         - "avr-gcc@8"
         - "qmk"
       casks:
-        - "arc"
         - "qmk-toolbox"
 
   ubuntu:
