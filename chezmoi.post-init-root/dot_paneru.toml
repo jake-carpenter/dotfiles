@@ -1,0 +1,53 @@
+# syntax=toml
+
+[options]
+preset_column_widths = [ 0.25, 0.33, 0.50, 0.66, 0.75 ]
+animation_speed = 10
+auto_center = false
+sliver_width = 20
+focus_follows_mouse = false
+
+[bindings]
+window_resize = "cmd + ctrl + shift + alt - g"
+window_shrink = "cmd + ctrl + shift + alt - s"
+window_focus_west = ["cmd + ctrl + shift + alt - j", "cmd + ctrl + shift + alt - leftarrow"]
+window_focus_east = ["cmd + ctrl + shift + alt - l", "cmd + ctrl + shift + alt - rightarrow"]
+window_focus_north = ["cmd + ctrl + shift + alt - i", "cmd + ctrl + shift + alt - uparrow"]
+window_focus_south = ["cmd + ctrl + shift + alt - k", "cmd + ctrl + shift + alt - downarrow"]
+window_focus_first = "cmd + ctrl + shift + alt - y"
+window_focus_last = "cmd + ctrl + shift + alt - p"
+window_swap_west = "cmd + ctrl + shift + alt - u"
+window_swap_east = "cmd + ctrl + shift + alt - o"
+window_swap_north = "cmd + ctrl + shift + alt - z"
+window_swap_south = "cmd + ctrl + shift + alt - x"
+window_center = "cmd + ctrl + shift + alt - c"
+window_fullwidth = "cmd + ctrl + shift + alt - f"
+window_manage = "cmd + ctrl + shift + alt - t"
+window_stack = "cmd + ctrl + shift + alt - ["
+window_unstack = "cmd + ctrl + shift + alt - ]"
+window_equalize = "alt + shift - e"
+quit = "cmd + ctrl + shift + alt - q"
+
+[decorations.inactive.dim]
+opacity = -0.05
+
+[decorations.active.border]
+enabled = true
+color = "#A15D73"
+width = 2.0
+radius = "auto"
+
+[swipe]
+sensitivity = 0.2
+deceleration = 10.0
+
+[swipe.gesture]
+fingers_count = 4
+direction = "Natural"
+
+[swipe.scroll]
+modifier = "alt"
+
+[windows.all]
+title = ".*"
+horizontal_padding = 10
