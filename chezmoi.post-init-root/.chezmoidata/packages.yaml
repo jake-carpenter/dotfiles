@@ -61,14 +61,12 @@ packages:
         - "keyclu"
         - "latest"
         - "marta"
-        - "obs"
         - "obsidian"
         - "orbstack"
         - "pearcleaner"
         - "postman"
         - "proxyman"
         - "raycast"
-        - "rectangle-pro"
         - "scroll-reverser"
         - "stats"
         - "ticktick"
@@ -130,7 +128,6 @@ packages:
     base:
       - "attempt-cli"
       - "projclean"
-      - "rip2"
     desktop:
       - "paneru"
     personal:
