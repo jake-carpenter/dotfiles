@@ -27,6 +27,8 @@ window_manage = "ralt - t"
 window_stack = "ralt - ["
 window_unstack = "ralt - ]"
 window_equalize = "ralt - e"
+window_nextdisplay = "ralt - v"
+mouse_nextdisplay = "ralt - b"
 quit = "ralt - q"
 
 [decorations.inactive.dim]
