@@ -3,7 +3,7 @@
 [options]
 preset_column_widths = [ 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.50, 0.66 ]
 animation_speed = 50
-auto_center = true
+auto_center = false
 sliver_width = 20
 focus_follows_mouse = false
 mouse_follows_focus = false
