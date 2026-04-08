@@ -48,7 +48,7 @@ packages:
         - "clop"
         - "devcleaner"
         - "font-atkinson-hyperlegible"
-        - "font-monaspace-nerd-font"
+        - "font-monaspace"
         - "font-ubuntu-mono-nerd-font"
         - "font-ubuntu-nerd-font"
         - "font-ubuntu-sans-nerd-font"
