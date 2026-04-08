@@ -9,6 +9,7 @@ packages:
         - "bat"
         - "btop"
         - "ca-certificates"
+        - "cargo-update"
         - "chezmoi"
         - "docker"
         - "eza"
@@ -126,8 +127,6 @@ packages:
 
   cargo:
     base:
-      - "attempt-cli"
-      - "cargo-update"
       - "projclean"
     desktop:
       - "paneru"
