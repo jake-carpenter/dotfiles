@@ -10,11 +10,11 @@
   "features": {
     "inline_completion_provider": "none"
   },
-  "theme": "Catppuccin Frappé",
+  "theme": "One Dark",
   "ui_font_size": 16,
   "ui_font_family": "Atkinson Hyperlegible",
-  "buffer_font_family": "MonaspiceNe Nerd Font",
-  "buffer_font_size": 13,
+  "buffer_font_family": "Monaspace Argon",
+  "buffer_font_size": 11.0,
   "buffer_font_features": {
     "ss01": true,
     "ss02": true,
