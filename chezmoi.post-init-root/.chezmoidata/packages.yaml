@@ -15,9 +15,9 @@ packages:
         - "eza"
         - "fastlane"
         - "fastfetch"
+        - "fd"
         - "fish"
         - "fnm"
-        - "fzf"
         - "gh"
         - "git"
         - "git-delta"
@@ -30,6 +30,7 @@ packages:
         - "python-lsp-server"
         - "rbenv"
         - "rip2"
+        - "ripgrep" # Neovim
         - "superfile"
         - "uv"
         - "watchman"
@@ -128,6 +129,7 @@ packages:
   cargo:
     base:
       - "projclean"
+      - "tree-sitter-cli"
     desktop:
       - "paneru"
     personal:
