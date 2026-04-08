@@ -73,7 +73,7 @@ packages:
         - "ticktick"
         - "visual-studio-code"
         - "warp"
-        - "xcodes"
+        - "xcodes-app"
         - "zed"
         - "zen"
     personal:
