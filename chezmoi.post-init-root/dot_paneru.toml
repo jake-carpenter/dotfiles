@@ -49,7 +49,7 @@ fingers_count = 4
 direction = "Natural"
 
 [swipe.scroll]
-modifier = "alt"
+modifier = "lalt"
 
 [windows.all]
 title = ".*"
