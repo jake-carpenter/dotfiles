@@ -55,3 +55,8 @@ modifier = "alt"
 title = ".*"
 horizontal_padding = 0
 
+[windows.rider]
+title = "Rollback Changes|Welcome to JetBrains Rider|^Settings$|Create: File|Add File to Git"
+bundle_id = "com.jetbrains.rider"
+floating = true
+
