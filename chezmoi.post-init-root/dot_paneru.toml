@@ -19,8 +19,6 @@ window_focus_first = "ralt - y"
 window_focus_last = "ralt - p"
 window_swap_west = "ralt - u"
 window_swap_east = "ralt - o"
-window_swap_north = "ralt - z"
-window_swap_south = "ralt - x"
 window_center = "ralt - c"
 window_fullwidth = "ralt - f"
 window_manage = "ralt - t"
@@ -28,6 +26,10 @@ window_stack = "ralt - ["
 window_unstack = "ralt - ]"
 window_equalize = "ralt - e"
 window_nextdisplay = "ralt - v"
+window_virtual_north = "f13"
+window_virtual_south = "f14"
+window_virtualmove_north = "ralt - z"
+window_virtualmove_south = "ralt - x"
 mouse_nextdisplay = "ralt - b"
 quit = "ralt - q"
 
@@ -43,6 +45,7 @@ radius = "auto"
 [swipe]
 sensitivity = 0.2
 deceleration = 10.0
+continuous = false
 
 [swipe.gesture]
 fingers_count = 4
@@ -56,7 +59,21 @@ title = ".*"
 horizontal_padding = 0
 
 [windows.rider]
-title = "Rollback Changes|Welcome to JetBrains Rider|^Settings$|Create: File|Add File to Git"
+title = "Rollback Changes|Welcome to JetBrains Rider|^Settings$|Create: File|Add File to Git|Rename|^Upgrade|^Edit Commit|Plugin Updates$"
 bundle_id = "com.jetbrains.rider"
 floating = true
 
+[windows.orbstack]
+title = "Orbstack"
+bundle_id = "dev.kdrag0n.MacVirt"
+floating = false
+
+[windows.xcode]
+title = "Xcode"
+bundle_id = "com.apple.dt.Xcode"
+floating = false
+
+[windows.rdm]
+title = ".*"
+bundle_id = "com.devolutions.remotedesktopmanager"
+floating = false
