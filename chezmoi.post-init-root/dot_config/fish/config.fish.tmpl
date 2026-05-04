@@ -1,27 +1,47 @@
-set -gx PATH /usr/local/bin $PATH
-fish_add_path $HOME/.local/bin
-
 # Homebrew
 # https://github.com/orgs/Homebrew/discussions/4412#discussioncomment-8651316
-if test -d /home/linuxbrew/.linuxbrew # Linux
-    set -gx HOMEBREW_PREFIX "/home/linuxbrew/.linuxbrew"
-    set -gx HOMEBREW_CELLAR "$HOMEBREW_PREFIX/Cellar"
-    set -gx HOMEBREW_REPOSITORY "$HOMEBREW_PREFIX/Homebrew"
-else if test -d /opt/homebrew # MacOS
+if test -d /home/linuxbrew/.linuxbrew
+    set -gx HOMEBREW_PREFIX /home/linuxbrew/.linuxbrew
+    set -gx HOMEBREW_CELLAR $HOMEBREW_PREFIX/Cellar
+    set -gx HOMEBREW_REPOSITORY $HOMEBREW_PREFIX/Homebrew
+else if test -d /opt/homebrew
     set -gx HOMEBREW_PREFIX /opt/homebrew
-    set -gx HOMEBREW_CELLAR "$HOMEBREW_PREFIX/Cellar"
-    set -gx HOMEBREW_REPOSITORY "$HOMEBREW_PREFIX/homebrew"
+    set -gx HOMEBREW_CELLAR $HOMEBREW_PREFIX/Cellar
+    set -gx HOMEBREW_REPOSITORY $HOMEBREW_PREFIX
+else if test -d /usr/local/Cellar
+    or test -d /usr/local/Homebrew
+    set -gx HOMEBREW_PREFIX /usr/local
+    set -gx HOMEBREW_CELLAR $HOMEBREW_PREFIX/Cellar
+    set -gx HOMEBREW_REPOSITORY $HOMEBREW_PREFIX
 end
 
-fish_add_path -gP "$HOMEBREW_PREFIX/bin" "$HOMEBREW_PREFIX/sbin"
-
-! set -q MANPATH; and set MANPATH ''
-set -gx MANPATH "$HOMEBREW_PREFIX/share/man" $MANPATH
-! set -q INFOPATH; and set INFOPATH ''
-set -gx INFOPATH "$HOMEBREW_PREFIX/share/info" $INFOPATH
+# Homebrew PATH: only add to fish_user_paths when a directory is not already there (no growth on re-source)
+if set -q HOMEBREW_PREFIX
+    set -l gnubin $HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin
+    if test -d $gnubin
+        and not contains -- $gnubin $fish_user_paths
+        set -U --prepend fish_user_paths $gnubin
+    end
+    set -l brew_paths $HOMEBREW_PREFIX/bin $HOMEBREW_PREFIX/sbin
+    set -l missing
+    for p in $brew_paths
+        if not contains -- $p $fish_user_paths
+            set --append missing $p
+        end
+    end
+    if set -q missing[1]
+        set -U --prepend fish_user_paths $missing
+    end
+end
+! set -q MANPATH; and set -gx MANPATH
+set -gx MANPATH $HOMEBREW_PREFIX/share/man $MANPATH
+! set -q INFOPATH; and set -gx INFOPATH
+set -gx INFOPATH $HOMEBREW_PREFIX/share/info $INFOPATH
 set -gx HOMEBREW_NO_AUTO_UPDATE 1
 
-fish_add_path $HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin
+# Add these *after* Homebrew so `/opt/homebrew/bin` wins
+set -gx PATH /usr/local/bin $PATH
+fish_add_path $HOME/.local/bin
 
 # pnpm
 set -gx PNPM_HOME $HOME/Library/pnpm
