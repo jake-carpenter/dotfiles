@@ -12,6 +12,7 @@ packages:
         - "cargo-update"
         - "chezmoi"
         - "docker"
+        - "EasyXdc/tap/ports-rs"
         - "eza"
         - "fastlane"
         - "fastfetch"
