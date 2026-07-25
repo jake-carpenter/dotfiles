@@ -2,8 +2,9 @@ packages:
   darwin:
     base:
       taps:
-        - isacikgoz/taps
+        - easyxdc/tap
         - eth-p/software
+        - isacikgoz/taps 
       brews:
         - "attempt-cli"
         - "bat"
@@ -74,20 +75,13 @@ packages:
         - "stats"
         - "ticktick"
         - "visual-studio-code"
-        - "warp"
         - "xcodes-app"
         - "zed"
         - "zen"
     personal:
       taps:
-        - qmk/qmk
       brews:
-        - "avr-binutils"
-        - "avr-gcc@8"
-        - "qmk"
       casks:
-        - "qmk-toolbox"
-        - "zulu@17"
 
   ubuntu:
     base:
