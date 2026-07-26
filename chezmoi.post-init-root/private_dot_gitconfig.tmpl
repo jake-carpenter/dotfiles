@@ -2,6 +2,8 @@
   aliases = "!git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /"
   amend = commit --amend --edit
   append = commit --amend --no-edit
+  br = branch
+  brdsc = "!git config --get \"branch.$(git symbolic-ref --short HEAD)\""
   ci = commit
   diffs = "!git -c delta.side-by-side=true diff"
   co = checkout
