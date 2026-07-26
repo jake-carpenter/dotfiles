@@ -65,7 +65,7 @@ set -gx VISUAL hx
 set -gx GITIN_LINESIZE 20
 
 # bun
-set --export BUN_INSTALL "$HOME/.bun"
+set -gx BUN_INSTALL "$HOME/.bun"
 fish_add_path $BUN_INSTALL/bin
 
 # cargo (Rust)
@@ -103,6 +103,9 @@ set -gx GIT_SSL_CAPATH "/Library/Application Support/Netskope/STAgent/data/nscac
 set -gx SSL_CERT_FILE "/Library/Application Support/Netskope/STAgent/data/nscacert_combined.pem"
 
 # Quiets Kiota output during dotnet build
-export KIOTA_TUTORIAL_ENABLED=0
+set -gx KIOTA_TUTORIAL_ENABLED 0
+
+# Maestro CLI
+fish_add_path $HOME/.maestro/bin
 
 {{- end }}
