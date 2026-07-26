@@ -78,7 +78,17 @@ title = "Xcode"
 bundle_id = "com.apple.dt.Xcode"
 floating = false
 
+[windows.accessibility_inspector]
+title = "Accessibility Inspector"
+bundle_id = "com.apple.AccessibilityInspector"
+floating = false
+
 [windows.rdm]
 title = ".*"
 bundle_id = "com.devolutions.remotedesktopmanager"
 floating = false
+
+[windows.cisco]
+title = ".*"
+bundle_id = "com.cisco.secureclient.gui"
+floating = true
