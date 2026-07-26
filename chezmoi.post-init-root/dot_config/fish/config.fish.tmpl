@@ -43,14 +43,9 @@ set -gx HOMEBREW_NO_AUTO_UPDATE 1
 set -gx PATH /usr/local/bin $PATH
 fish_add_path $HOME/.local/bin
 
-# pnpm
-set -gx PNPM_HOME $HOME/Library/pnpm
-if not string match -q -- $PNPM_HOME $PATH
-    fish_add_path "$PNPM_HOME"
-end
-
-# fnm (Node version manager)
-eval "$(fnm env --use-on-cd --version-file-strategy=recursive)"
+# Volta
+set -gx VOLTA_HOME $HOME/.volta
+fish_add_path $VOLTA_HOME/bin
 
 # Android
 set -gx JAVA_HOME /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
