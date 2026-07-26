@@ -84,8 +84,7 @@
   autoSetupRemote = true
 
 [user]
-  name = Jake Carpenter
-{{- if has .chezmoi.fqdnHostname .systems.personal }}
-  email = jake@jakecarpenter.dev
-  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAZrbQ9/KiToUmY5ybBtSIpklB5MNUgYRYOnUgf0o9US
-{{- end }}
+  name = "Jake Carpenter"
+
+[include]
+  path = ~/.gitconfig-credentials
