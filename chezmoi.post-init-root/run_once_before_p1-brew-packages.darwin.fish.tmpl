@@ -66,9 +66,10 @@ echo "🚀 Tapping brew formulae and installing packages"
 echo "─────────────────────────────────────────"
 # Formulae
 for tap in $taps
+  brew trust "$tap"
+
   if not brew tap 2>/dev/null | grep -q "$tap"
     echo -e ""(set_color red)"✗"(set_color normal)" $tap"
-    brew trust "$tap"
     brew tap "$tap"
   else
     echo -e ""(set_color green)"✓"(set_color normal)" $tap"
