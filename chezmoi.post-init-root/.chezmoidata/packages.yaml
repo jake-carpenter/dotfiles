@@ -122,6 +122,7 @@ packages:
 
   cargo:
     base:
+      # Future problem: cargo-update needs libssl-dev on Ubuntu
       - "cargo-update"
       - "projclean"
       - "tree-sitter-cli"
