@@ -1,6 +1,7 @@
 function pkg_update
   if command -v npm >/dev/null 2>&1
     node_update
+    echo ""
   end
 
   if command -v bun >/dev/null 2>&1
