@@ -100,7 +100,6 @@ packages:
         - "hyperfine"
         - "jq"
         - "rustup"
-        - "uv"
         - "yamllint"
         - "yq"
         - "wget"
