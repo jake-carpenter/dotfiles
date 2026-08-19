@@ -20,10 +20,6 @@ echo -e ""(set_color green)"✓"(set_color normal)" eza"
 fd --gen-completions fish >~/.config/fish/completions/fd.fish
 echo -e ""(set_color green)"✓"(set_color normal)" fd"
 
-# fnm
-fnm completions --shell fish >~/.config/fish/completions/fnm.fish
-echo -e ""(set_color green)"✓"(set_color normal)" fnm"
-
 # gh
 gh completion --shell fish >~/.config/fish/completions/gh.fish
 echo -e ""(set_color green)"✓"(set_color normal)" gh"
@@ -31,3 +27,6 @@ echo -e ""(set_color green)"✓"(set_color normal)" gh"
 # git
 wget -o ~/.config/fish/completions/git.fish -q https://github.com/fish-shell/fish-shell/blob/master/share/completions/git.fish
 echo -e ""(set_color green)"✓"(set_color normal)" git"
+
+# volta
+volta completions fish >~/.config/fish/completions/volta.fish

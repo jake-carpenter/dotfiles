@@ -35,10 +35,12 @@ packages:
         - "rust-analyzer"
         - "superfile"
         - "uv"
+        - "volta"
         - "watchman"
+        - "wget"
         - "yamllint"
         - "yq"
-        - "wget"
+
       casks:
         - "1password"
         - "1password-cli"
@@ -100,9 +102,9 @@ packages:
         - "hyperfine"
         - "jq"
         - "rustup"
+        - "wget"
         - "yamllint"
         - "yq"
-        - "wget"
 
   npm:
     base:
@@ -117,6 +119,7 @@ packages:
       - "typescript-svelte-plugin"
       - "vscode-langservers-extracted"
       - "yaml-language-server"
+    server:
     workstation:
     personal:
 
@@ -129,3 +132,4 @@ packages:
     workstation:
       - "paneru"
     personal:
+      - "paneru"
