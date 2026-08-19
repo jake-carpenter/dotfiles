@@ -24,17 +24,32 @@ set profile
   set -a casks {{ . | quote }}
 {{ end }}
 
-# Desktop profile
-{{ if has .chezmoi.fqdnHostname .systems.desktop }}
-  set -a profile desktop
+# Workstation profile
+{{ if has .chezmoi.fqdnHostname .systems.workstation }}
+  set -a profile workstation
 
-  {{ range .packages.darwin.desktop.taps }}
+  {{ range .packages.darwin.workstation.taps }}
     set -a taps {{ . | quote }}
   {{ end -}}
-  {{ range .packages.darwin.desktop.brews }}
+  {{ range .packages.darwin.workstation.brews }}
     set -a brews {{ . | quote }}
   {{ end }}
-  {{ range .packages.darwin.desktop.casks }}
+  {{ range .packages.darwin.workstation.casks }}
+    set -a casks {{ . | quote }}
+  {{ end }}
+{{ end }}
+
+# Server profile
+{{ if has .chezmoi.fqdnHostname .systems.server }}
+  set -a profile server
+
+  {{ range .packages.darwin.server.taps }}
+    set -a taps {{ . | quote }}
+  {{ end -}}
+  {{ range .packages.darwin.server.brews }}
+    set -a brews {{ . | quote }}
+  {{ end }}
+  {{ range .packages.darwin.server.casks }}
     set -a casks {{ . | quote }}
   {{ end }}
 {{ end }}

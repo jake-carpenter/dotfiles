@@ -11,9 +11,9 @@ set packages
   set packages $packages {{ . | quote }}
 {{ end }}
 
-# Desktop profile
-{{ if has .chezmoi.fqdnHostname .systems.desktop }}
-  {{ range .packages.npm.desktop }}
+# Workstation profile
+{{ if has .chezmoi.fqdnHostname .systems.workstation }}
+  {{ range .packages.npm.workstation }}
     set packages $packages {{ . | quote }}
   {{ end -}}
 {{ end }}

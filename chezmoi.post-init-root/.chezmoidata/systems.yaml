@@ -1,9 +1,8 @@
 systems:
-  desktop:
-    - "JakesMBP"
-    - "PKT6TKQQYT"
+  server:
     - "M4K70RY2XJ"
-    - "macos.shared"
+  workstation:
+    - "JakesMBP"
     - "FXLVQP4WPV"
   personal:
     - "JakesMBP"

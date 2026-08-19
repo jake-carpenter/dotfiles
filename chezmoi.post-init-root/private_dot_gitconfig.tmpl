@@ -35,7 +35,7 @@
   prompt = false
   trustExitCode = true
   
-{{ if has .chezmoi.fqdnHostname .systems.desktop -}}
+{{ if has .chezmoi.fqdnHostname .systems.workstation -}}
 [difftool "Kaleidoscope"]
   cmd = "ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\""
 {{- end }}
@@ -46,7 +46,7 @@
 [gpg]
   format = ssh
 
-{{ if has .chezmoi.fqdnHostname .systems.desktop -}}
+{{ if has .chezmoi.fqdnHostname .systems.workstation -}}
 [gpg "ssh"]
   program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 {{- end }}
@@ -71,7 +71,7 @@
 [mergetool]
   prompt = false
 
-{{ if has .chezmoi.fqdnHostname .systems.desktop -}}
+{{ if has .chezmoi.fqdnHostname .systems.workstation -}}
 [mergetool "Kaleidoscope"]
   cmd = "ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot"
   trustExitCode = true

@@ -10,7 +10,6 @@ packages:
         - "bat"
         - "btop"
         - "ca-certificates"
-        - "cargo-update"
         - "chezmoi"
         - "docker"
         - "EasyXdc/tap/ports-rs"
@@ -19,20 +18,21 @@ packages:
         - "fastfetch"
         - "fd"
         - "fish"
-        - "fnm"
         - "gh"
         - "git"
-        - "git-delta"
         - "gitin"
         - "helix"
         - "hyperfine"
         - "jq"
         - "marksman"
+        - "neovim"
         - "pyenv"
         - "python-lsp-server"
         - "rbenv"
         - "rip2"
-        - "ripgrep" # Neovim
+        - "ripgrep"
+        - "rust"
+        - "rust-analyzer"
         - "superfile"
         - "uv"
         - "watchman"
@@ -41,37 +41,37 @@ packages:
         - "wget"
       casks:
         - "1password"
-    desktop:
+        - "1password-cli"
+        - "font-monaspace"
+    server:
       taps:
       brews:
-        - "rust"
-        - "rust-analyzer"
       casks:
-        - "1password-cli"
+        - "orbstack"
+        - "raycast"
+        - "xcodes-app"
+        - "zen"
+    workstation:
+      taps:
+      brews:
+      casks:
         - "cleanshot"
         - "clop"
         - "devcleaner"
         - "font-atkinson-hyperlegible"
         - "font-monaspace"
-        - "font-ubuntu-mono-nerd-font"
-        - "font-ubuntu-nerd-font"
-        - "font-ubuntu-sans-nerd-font"
         - "daisydisk"
         - "devutils"
         - "easyfind"
         - "expo-orbit"
         - "kaleidoscope"
         - "keka"
-        - "keyclu"
-        - "latest"
-        - "marta"
         - "obsidian"
         - "orbstack"
         - "pearcleaner"
         - "postman"
         - "proxyman"
         - "raycast"
-        - "scroll-reverser"
         - "stats"
         - "ticktick"
         - "visual-studio-code"
@@ -117,7 +117,7 @@ packages:
       - "typescript-svelte-plugin"
       - "vscode-langservers-extracted"
       - "yaml-language-server"
-    desktop:
+    workstation:
     personal:
 
   cargo:
@@ -126,6 +126,6 @@ packages:
       - "cargo-update"
       - "projclean"
       - "tree-sitter-cli"
-    desktop:
+    workstation:
       - "paneru"
     personal:
