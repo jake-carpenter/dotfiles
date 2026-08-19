@@ -30,19 +30,96 @@ echo "🚀 Checking for missing NPM packages"
 echo "─────────────────────────────────────────"
 
 set missing_packages
+set outdated_configured_packages
+set outdated_all_packages
 
+# npm returns status 1 when it finds outdated packages, so keep the JSON even
+# when the command reports that updates are available.
+set outdated_json (npm outdated -g --json 2>/dev/null)
+
+# Check configured packages
 for package in $packages
-  if not npm list "$package" -g --parseable 2>/dev/null | grep -q "$package"
+  set is_installed false
+  if npm list "$package" -g --depth=0 --parseable 2>/dev/null | grep -Fxq (npm root -g)/"$package"
+    set is_installed true
+  end
+  if test -d "$HOME/.volta/tools/image/packages/$package/lib/node_modules/$package"
+    set is_installed true
+  end
+  if test $is_installed = false
     echo -e ""(set_color red)"✗"(set_color normal)" $package"
     set missing_packages $missing_packages $package
   else
-    echo -e ""(set_color green)"✓"(set_color normal)" $package"
+    set package_outdated
+    if test -n "$outdated_json"
+      set package_outdated (printf '%s\n' "$outdated_json" | jq -r --arg package "$package" 'if .[$package] and .[$package].current != .[$package].wanted then $package else empty end')
+    end
+
+    if test (count $package_outdated) -gt 0; and test "$package_outdated[1]" = "$package"
+      echo -e ""(set_color yellow)"↻"(set_color normal)" $package"
+      set outdated_configured_packages $outdated_configured_packages $package
+    else
+      echo -e ""(set_color green)"✓"(set_color normal)" $package"
+    end
+  end
+end
+
+# Check all other globally installed packages for updates
+if test -n "$outdated_json"
+  set global_packages (npm list -g --depth=0 --json 2>/dev/null | jq -r '.dependencies // {} | keys[]')
+  for package in $global_packages
+    # Skip packages that are in our configured list (already handled above)
+    if contains -- "$package" $packages
+      continue
+    end
+
+    set pkg_outdated
+    set pkg_outdated (printf '%s\n' "$outdated_json" | jq -r --arg package "$package" 'if .[$package] and .[$package].current != .[$package].wanted then $package else empty end')
+
+    if test (count $pkg_outdated) -gt 0; and test "$pkg_outdated[1]" = "$package"
+      echo -e ""(set_color yellow)"↻"(set_color normal)" $package"
+      set outdated_all_packages $outdated_all_packages $package
+    else if test (count $pkg_outdated) -eq 0
+      echo -e ""(set_color green)"✓"(set_color normal)" $package"
+    end
   end
 end
 
 if test (count $missing_packages) -gt 0
-  npm -g install $missing_packages
-  echo -e "\n🎉 All missing packages have been installed.\n"
+  if command -v volta >/dev/null 2>&1
+    for package in $missing_packages
+      volta install "$package"
+    end
+  else
+    npm -g install $missing_packages
+  end
+end
+
+if test (count $outdated_configured_packages) -gt 0
+  if command -v volta >/dev/null 2>&1
+    for package in $outdated_configured_packages
+      volta install "$package@latest"
+    end
+  else
+    for package in $outdated_configured_packages
+      npm -g install "$package@latest"
+    end
+  end
+end
+
+if test (count $outdated_all_packages) -gt 0
+  if command -v volta >/dev/null 2>&1
+    for package in $outdated_all_packages
+      volta install "$package@latest"
+    end
+  else
+    npm -g install $outdated_all_packages
+  end
+end
+
+set total_updates (math (count $missing_packages) + (count $outdated_configured_packages) + (count $outdated_all_packages))
+if test $total_updates -gt 0
+  echo -e "\n🎉 Node packages have been updated.\n"
 else
   echo -e "\nAll packages are already installed.\n"
 end
