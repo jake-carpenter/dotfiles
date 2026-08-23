@@ -112,6 +112,7 @@ packages:
       - "@tailwindcss/language-server"
       - "bash-language-server"
       - "dockerfile-language-server-nodejs"
+      - "fish-lsp"
       - "sql-language-server"
       - "svelte-language-server"
       - "typescript"
@@ -119,6 +120,7 @@ packages:
       - "typescript-svelte-plugin"
       - "vscode-langservers-extracted"
       - "yaml-language-server"
+
     server:
     workstation:
     personal:

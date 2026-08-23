@@ -20,6 +20,10 @@ echo -e ""(set_color green)"✓"(set_color normal)" eza"
 fd --gen-completions fish >~/.config/fish/completions/fd.fish
 echo -e ""(set_color green)"✓"(set_color normal)" fd"
 
+# fish lsp
+fish-lsp complete >~/.config/fish/completions/fish-lsp.fish
+echo -e ""(set_color green)"✓"(set_color normal)" fish lsp"
+
 # gh
 gh completion --shell fish >~/.config/fish/completions/gh.fish
 echo -e ""(set_color green)"✓"(set_color normal)" gh"
@@ -30,3 +34,4 @@ echo -e ""(set_color green)"✓"(set_color normal)" git"
 
 # volta
 volta completions fish >~/.config/fish/completions/volta.fish
+echo -e ""(set_color green)"✓"(set_color normal)" volta"
