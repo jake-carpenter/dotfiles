@@ -31,9 +31,6 @@
   "window.autoDetectColorScheme": true,
   "window.commandCenter": false,
   "yaml.disableSchemaDetection": [],
-  // ---------- CHAT ----------
-  "chat.agent.enabled": true,
-  "chat.disableAIFeatures": true,
   "chat.fontSize": 14,
   "chat.instructionsFilesLocations": {
     ".github/instructions.md": true
@@ -248,8 +245,8 @@
   "git.mergeEditor": true,
   "git.openRepositoryInParentFolders": "never",
   // ---------- JAVASCRIPT / TYPESCRIPT ----------
-  "js/ts.format.enabled": false,
-  "js/ts.format.insertSpaceAfterCommaDelimiter": false,
+  "js/ts.format.enabled": true,
+  "js/ts.format.insertSpaceAfterCommaDelimiter": true,
   "js/ts.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
   "js/ts.format.insertSpaceAfterKeywordsInControlFlowStatements": false,
   "js/ts.format.insertSpaceAfterOpeningAndBeforeClosingEmptyBraces": false,
@@ -265,17 +262,18 @@
   "js/ts.validate.enabled": true,
   // ---------- JSON ----------
   "json.schemaDownload.trustedDomains": {
-    "https://developer.microsoft.com/json-schemas/": true,
-    "https://json-schema.org/": true,
+    "https://schemastore.azurewebsites.net/": true,
+    "https://raw.githubusercontent.com/microsoft/vscode/": true,
+    "https://raw.githubusercontent.com/devcontainers/spec/": true,
+    "https://www.schemastore.org/": true,
     "https://json.schemastore.org/": true,
+    "https://json-schema.org/": true,
+    "https://developer.microsoft.com/json-schemas/": true,
     "https://models.dev": true,
     "https://opencode.ai": true,
-    "https://raw.githubusercontent.com/devcontainers/spec/": true,
-    "https://raw.githubusercontent.com/microsoft/vscode/": true,
-    "https://schemastore.azurewebsites.net/": true,
     "https://unpkg.com": true,
-    "https://www.schemastore.org/": true,
-    "https://raw.githubusercontent.com/catppuccin/": true
+    "https://raw.githubusercontent.com/catppuccin/": true,
+    "https://biomejs.dev": true
   },
   // ---------- TERMINAL ----------
   "terminal.external.linuxExec": "",
@@ -314,46 +312,24 @@
   "[github-actions-workflow]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
-  "[html]": {
+  "[html][liquid]": {
     "editor.defaultFormatter": "vscode.html-language-features"
   },
-  "[javascript]": {
+  "[javascript][javascriptreact][typescript][typescriptreact]": {
     "editor.defaultFormatter": "vscode.typescript-language-features",
-    "editor.rulers": [
-      100
-    ]
-  },
-  "[javascriptreact]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode",
-    "editor.rulers": [
-      100
-    ]
-  },
-  "[json]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
-  },
-  "[liquid]": {
-    "editor.defaultFormatter": "vscode.html-language-features"
-  },
-  "[markdown]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode",
     "editor.rulers": [
       100
     ],
     "editor.wordWrapColumn": 100
   },
-  "[typescriptreact]": {
-    "editor.wordWrapColumn": 100,
-    "editor.defaultFormatter": "oxc.oxc-vscode",
+  "[json][jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features",
     "editor.rulers": [
       100
     ]
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "vscode.markdown-language-features"
   },
   "[xml]": {
     "editor.defaultFormatter": "redhat.vscode-xml"
