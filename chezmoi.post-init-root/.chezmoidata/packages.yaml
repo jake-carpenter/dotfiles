@@ -4,7 +4,7 @@ packages:
       taps:
         - easyxdc/tap
         - eth-p/software
-        - isacikgoz/taps 
+        - isacikgoz/taps
       brews:
         - "attempt-cli"
         - "bat"
@@ -55,7 +55,9 @@ packages:
         - "zen"
     workstation:
       taps:
+        - rtk-ai/tap
       brews:
+        - rtk-ai/tap/rtk
       casks:
         - "cleanshot"
         - "clop"
