@@ -1,4 +1,4 @@
 function brew_update
-  brew upgrade
-  brew unlink node
+    brew upgrade -y
+    brew unlink node
 end
