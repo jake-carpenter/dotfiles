@@ -13,7 +13,7 @@ docker completion fish >~/.config/fish/completions/docker.fish
 echo -e ""(set_color green)"✓"(set_color normal)" docker"
 
 # eza
-wget -o ~/.config/fish/completions/eza.fish -q https://github.com/eza-community/eza/blob/main/completions/fish/eza.fish
+wget -qO ~/.config/fish/completions/eza.fish https://raw.githubusercontent.com/eza-community/eza/main/completions/fish/eza.fish
 echo -e ""(set_color green)"✓"(set_color normal)" eza"
 
 # fd
@@ -29,7 +29,7 @@ gh completion --shell fish >~/.config/fish/completions/gh.fish
 echo -e ""(set_color green)"✓"(set_color normal)" gh"
 
 # git
-wget -o ~/.config/fish/completions/git.fish -q https://github.com/fish-shell/fish-shell/blob/master/share/completions/git.fish
+wget -qO ~/.config/fish/completions/git.fish https://raw.githubusercontent.com/fish-shell/fish-shell/master/share/completions/git.fish
 echo -e ""(set_color green)"✓"(set_color normal)" git"
 
 # volta
