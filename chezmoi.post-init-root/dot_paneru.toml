@@ -45,7 +45,6 @@ radius = "auto"
 [swipe]
 sensitivity = 0.2
 deceleration = 10.0
-continuous = false
 
 [swipe.gesture]
 fingers_count = 4
